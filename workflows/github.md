@@ -1,3 +1,2 @@
-# github
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# GitHub
+Inspect status, branch, remote, and secrets before committing. Create checkpoint commits at locked phases. Run required tests/builds before push, never commit secrets, push only when authorized, and verify the remote branch and commit SHA.
