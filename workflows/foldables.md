@@ -1,3 +1,2 @@
-# foldables
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# Foldables
+Design for cover and inner displays, folded/unfolded states, tabletop/book postures, and changing window bounds. Detect window characteristics rather than device models. Keep critical content away from hinges/fold regions and preserve state across configuration changes.
