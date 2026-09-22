@@ -1,3 +1,2 @@
-# web
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# Web
+Use available width and content constraints rather than device-name breakpoints. Test intermediate widths, keyboard behavior, browser differences, accessibility, performance, and real API integration. Verify relevant Chrome, Safari, Firefox, and Edge behavior.
