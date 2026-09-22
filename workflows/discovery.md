@@ -1,3 +1,2 @@
-# discovery
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# Discovery
+Establish the product problem, users, geography, platforms, business model, integrations, compliance context, success criteria, constraints, and unknowns. Ask only material questions. Confirm project identity. Do not code until PRD acceptance unless explicitly requested.
