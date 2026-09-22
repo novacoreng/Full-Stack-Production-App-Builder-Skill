@@ -2,17 +2,16 @@
 
 A reusable AI-agent skill for taking web and mobile applications from idea to verified production release.
 
-## Installation
+## Canonical source package
 
-### Claude
-Zip this folder with the folder itself as the ZIP root. Upload it through Claude's Skills UI.
+This repository contains the actual skill source, not only a prompt or README.
 
-### Other Agent Skills-compatible platforms
-Use the same folder containing SKILL.md as the canonical skill package. Platform-specific instructions should live in adapters rather than changing the core workflow.
-
-## What it covers
-
-Discovery, project identity, process flows, PRD, TRD, UX/UI, responsive/adaptive design, foldables, frontend, backend, database, APIs, authentication, payments, security, privacy/legal compliance auditing, performance, testing, debugging, deployment, documentation, GitHub, project state, and agent handoff.
+- `SKILL.md` — canonical skill instructions and execution rules
+- `workflows/` — discovery, requirements, PRD, TRD, UX/UI, web/mobile, adaptive/foldables, frontend/backend, API/database, auth/payments, testing, debugging, security, performance, deployment, GitHub, legal/compliance, and tool orchestration
+- `templates/` — PRD, TRD, Product Contract, process flows, feature matrix, testing, security, deployment, database, project state, handoff, and device test matrix
+- `references/` — platform, accessibility, security, Android, iOS, web, and foldable guidance
+- `adapters/` — ChatGPT, Claude, and Codex platform notes
+- `examples/` — phase reporting example
 
 ## Mandatory build loop
 
@@ -27,6 +26,14 @@ A phase cannot be locked while required tests, acceptance criteria, integration 
 The skill includes a dedicated legal/privacy/compliance workflow covering age/child privacy, third-party resource loading, analytics/session replay, commercial email, subscriptions/automatic renewal, user uploads/copyright, privacy/consent controls, and owner-only external actions.
 
 The workflow is an engineering audit, not legal advice. Jurisdiction and product applicability must be established and material legal conclusions should be reviewed by qualified counsel.
+
+## Installation
+
+### Claude
+Use this repository as the canonical skill folder or package the folder with `SKILL.md` as its root when uploading a Claude Skill.
+
+### Other Agent Skills-compatible platforms
+Use `SKILL.md` as the canonical entry point and load supporting workflows/references as needed.
 
 ## Production principle
 
