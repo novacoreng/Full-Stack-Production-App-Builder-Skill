@@ -1,3 +1,2 @@
-# process flows
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# Process Flows
+Map launch-to-success and return journeys. Trace user action → UI → validation → API → auth/authz → backend → database → external service → response → UI state → success/error/recovery. Cover guest, first-time, returning, payment, failure, offline, notification, admin, and interrupted flows where applicable.
