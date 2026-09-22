@@ -172,13 +172,34 @@ Build in a dynamic roadmap of coherent phases. Before each phase state:
 - acceptance criteria
 - next phase
 
-After each phase:
-- build and verify
-- run relevant tests
-- fix failures before declaring completion
-- update project state and handoff
-- checkpoint/commit where appropriate
-- automatically continue unless genuinely blocked
+### Mandatory phase execution loop
+Every implementation phase MUST follow this exact sequence:
+
+**Build → Test → Verify → Fix → Lock → Move to next phase.**
+
+1. **Build** — Implement the phase's approved requirements and all required frontend, backend, database, integration, security, and infrastructure work.
+2. **Test** — Run the tests relevant to the phase, including unit/component/integration/API/database/E2E/browser/device/accessibility/performance checks as applicable.
+3. **Verify** — Compare the implementation against the phase objectives, acceptance criteria, process-flow coverage, API/DB contracts, UX/UI requirements, and real runtime behavior. Do not treat a successful compile as verification.
+4. **Fix** — Resolve every discovered failure, mismatch, regression, or incomplete requirement. Repeat **Build → Test → Verify → Fix** until the phase passes or a genuine external blocker prevents completion.
+5. **Lock** — Declare the phase complete only after its acceptance criteria pass. Update PROJECT_STATE.md, AGENT_HANDOFF.md, CHANGELOG.md and other relevant documentation; record the verification evidence; create a checkpoint Git commit when Git is available and authorized. A locked phase must not be casually reopened or changed by later work without change-impact analysis.
+6. **Move to next phase** — Automatically begin the next approved phase. Do not ask the user to say “proceed” after a successfully locked phase.
+
+A phase is **not complete** if any required test, acceptance criterion, integration, security check, runtime verification, or documentation update is still failing or unresolved.
+
+### Phase lock record
+For every locked phase, record:
+- phase number and name
+- requirements/features completed
+- files/systems changed
+- tests executed and results
+- verification evidence
+- bugs found and fixes applied
+- acceptance criteria status
+- known limitations or blockers
+- checkpoint commit SHA
+- next phase
+
+If a phase fails after being locked because of a later change, do not silently modify the locked result. Perform change-impact analysis, document the regression, fix it, re-run the affected verification, and create a new checkpoint commit.
 
 ## Backend/API requirements
 Every production API should define:
