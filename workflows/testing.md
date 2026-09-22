@@ -1,3 +1,2 @@
-# testing
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# Testing
+Use appropriate unit, component, integration, API, database, E2E, browser, device, visual, accessibility, performance, and security tests. Test empty, many, invalid, duplicate, deleted, expired-session, unauthorized, offline, timeout, interrupted, rotation, resize, fold, and payment states.
