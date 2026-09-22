@@ -1,3 +1,2 @@
-# trd
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# TRD
+Translate the accepted PRD into technical design covering architecture, technology choices, frontend/mobile/backend boundaries, APIs, database, auth, storage, payments, notifications, jobs, caching, observability, security, testing, CI/CD, deployment, environments, backups, recovery, scalability, and third parties.
