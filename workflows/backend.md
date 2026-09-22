@@ -1,3 +1,2 @@
-# backend
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# Backend
+Implement business logic with validation, authentication, authorization, transactions, idempotency, rate limits, logging, errors, retries, concurrency controls, and real database/external-service integration. Keep secrets outside source control.
