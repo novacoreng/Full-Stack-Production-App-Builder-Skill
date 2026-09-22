@@ -1,3 +1,2 @@
-# requirements
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# Requirements
+Create stable requirement IDs and trace each requirement through PRD, process flow, UX, UI, API, database, implementation, tests, and acceptance. Never silently assume material requirements. Record decisions and perform change-impact analysis.
