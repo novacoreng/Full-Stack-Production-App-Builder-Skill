@@ -1,3 +1,2 @@
-# prd
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# PRD
+Create the accepted Product Contract and PRD before implementation. Include vision, goals, non-goals, users, journeys, flows, requirements, auth, payments, notifications, search/messaging, admin, localization, accessibility, security, performance, compliance, platform requirements, acceptance criteria, MVP/future scope, and decisions.
