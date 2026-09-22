@@ -1,3 +1,2 @@
-# project identity
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# Project Identity
+Confirm official name, logo/icon, brand direction, typography, colors, domain/app identifiers, and naming constraints. If no identity exists, create or propose one. Record the approved identity in the PRD and Product Contract.
