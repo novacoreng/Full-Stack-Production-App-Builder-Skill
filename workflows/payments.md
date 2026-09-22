@@ -1,3 +1,2 @@
-# payments
-
-This workflow is governed by . Follow its production, traceability, testing, security, adaptive-layout, and documentation requirements. Resolve material unknowns before implementation and update project state after meaningful work.
+# Payments
+Use real provider integrations for production. Verify payments server-side, verify signed webhooks, use idempotency and duplicate protection, model transaction states, handle retries/refunds/failures, preserve transaction history, and recover from interrupted payment flows.
