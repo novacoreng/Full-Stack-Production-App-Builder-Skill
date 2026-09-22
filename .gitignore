@@ -1,0 +1,31 @@
+# Local/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service-account*.json
+
+# Application artifacts accidentally copied into the skill repo
+node_modules/
+dist/
+build/
+coverage/
+.expo/
+.next/
+.vercel/
+*.log
+
+# OS/editor swap files
+*.swp
+*.swo
+*~
