@@ -274,6 +274,69 @@ Audit:
 
 Never commit .env files, private keys, credentials, service-account files, or other secrets.
 
+## Legal, privacy, and compliance audit
+Treat legal/compliance as an engineering workstream, not a last-minute policy-page task. This is a code and product audit workflow, **not legal advice**. Determine which requirements actually apply from the project's jurisdictions, users, data, business model, integrations, and content. Do not apply a US-specific rule globally without checking applicability.
+
+For every project, inspect the actual codebase and document evidence. Do not assume a control exists because a policy says it exists.
+
+At minimum, where applicable, audit these six exposure areas highlighted by the supplied legal-audit prompt:
+
+1. **Age gating / child privacy**
+   - Find every account-creation path: signup, OAuth callbacks, magic links, mobile onboarding, and equivalent flows.
+   - If the applicable product/legal requirements require an age gate, enforce it server-side before account creation and avoid retaining prohibited data from rejected attempts.
+   - Also inspect unauthenticated forms that collect names, emails, photos, or similar personal data.
+   - Do not hard-code a specific age threshold unless the applicable requirements and product jurisdiction support it.
+
+2. **Third-party fonts, CSS, scripts, and other remote resources**
+   - Search for remote font/CSS/JS resources and CDNs loaded by the application.
+   - Prefer self-hosting resources when appropriate for privacy, reliability, and compliance requirements.
+   - For third-party resources that must remain, document the provider, purpose, data exposure, and legal/privacy basis or required consent.
+
+3. **Analytics, session replay, and behavioral recording**
+   - Find analytics, session replay, heatmaps, keystroke logging, rage-click recording, and similar SDKs.
+   - Default sensitive recording features to off.
+   - Where recording is permitted and retained, mask sensitive inputs and never record passwords, payment secrets, or other prohibited sensitive fields.
+   - Implement explicit, revocable consent where the applicable jurisdiction/processing requires it, and persist the user's choice.
+   - Verify that consent state actually controls SDK initialization/recording behavior.
+
+4. **Commercial email and unsubscribe controls**
+   - Identify every commercial/marketing email path and distinguish it from transactional messages.
+   - Where applicable, implement working unsubscribe/suppression behavior, required sender/address information, and required email headers.
+   - Check the suppression list before sending marketing mail.
+   - Document the jurisdiction-specific retention and honoring requirements rather than assuming one statutory period applies everywhere.
+
+5. **Subscriptions and automatic renewal**
+   - Audit pricing, checkout, subscribe buttons, free trials, renewal notices, cancellation, and billing-state handling.
+   - Where automatic-renewal laws apply, show required price, renewal interval, automatic-renewal disclosure, and cancellation information at the appropriate point in the purchase flow.
+   - Make cancellation accessible and verify backend subscription state transitions.
+   - Send required transactional confirmation/reminder communications where applicable.
+   - Test interrupted checkout, duplicate events, cancellation, renewal, refund, and failed-payment states.
+
+6. **User uploads, copyright, and takedown processes**
+   - Find every upload path for images, files, text, avatars, posts, attachments, and generated content that may contain third-party work.
+   - Where applicable, provide copyright/takedown procedures, contact information, reporting controls, and repeat-infringer handling.
+   - If a US DMCA safe-harbor strategy is applicable, separately track the designated-agent registration/maintenance requirement and the in-product policy/contact information. Do not claim registration is complete from code alone.
+
+Also inspect:
+- privacy policy and terms pages
+- footer and signup links to those policies
+- actual third-party processors/services used by the code
+- cookie/tracking consent behavior
+- whether tracking begins before required consent
+- whether consent choices are stored and revocable
+- secrets, API keys, personal data, or sensitive information exposed in client bundles, source maps, logs, analytics payloads, or error reports.
+
+### Legal/compliance audit output
+For each applicable item, produce:
+- **Found** — what the codebase actually contains, with evidence.
+- **Changed** — the code/config/documentation changes made.
+- **You still need to** — actions requiring the owner, legal counsel, service provider, regulator, or external registration.
+- **Applicability** — jurisdiction/product assumption or unresolved question.
+- **Verification** — tests/evidence showing the control works.
+
+Do not present statutory penalty figures from a source as universal or guaranteed exposure. If external legal claims, thresholds, deadlines, or penalties are relevant, verify them against authoritative current sources and identify the jurisdiction and effective date.
+
+
 ## Performance and reliability
 Web:
 - bundle size
@@ -391,6 +454,14 @@ A feature is complete only when applicable items pass:
 
 ## Production audit
 Before claiming production readiness verify:
+- legal/privacy/compliance audit completed for applicable jurisdictions
+- age/child-privacy controls where applicable
+- third-party resource/data-processor inventory
+- analytics/session-replay consent and masking where applicable
+- marketing-email compliance and suppression behavior where applicable
+- subscription/renewal/cancellation disclosures and flows where applicable
+- user-upload/copyright/takedown controls where applicable
+- privacy policy, terms, cookie/consent documentation, and required links reviewed against actual code
 - requirements/process flows/acceptance
 - UX/UI/responsive/adaptive/accessibility
 - frontend typecheck/lint/build/tests
