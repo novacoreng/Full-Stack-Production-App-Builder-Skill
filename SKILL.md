@@ -627,3 +627,23 @@ Use current authoritative engineering standards as verification references where
 
 Record the version/date used. Standards are engineering baselines and do not by themselves establish legal compliance or certification.
 
+
+
+## Expanded production-readiness gates
+In addition to functional/security checks, production readiness must consider:
+- infrastructure/service dependency matrix complete;
+- environment separation and least-privilege provider access;
+- deployment artifact/commit traceability;
+- dependency/SCA/secret/SAST checks where applicable;
+- SBOM/dependency inventory where appropriate;
+- health/readiness and post-deploy smoke checks;
+- observability, alert ownership, incident runbooks;
+- backups, restore verification, RTO/RPO and rollback;
+- rate limits, idempotency, retries/timeouts and abuse controls;
+- cost/usage budgets and provider quotas;
+- regulatory/platform applicability matrix;
+- app-store/platform requirements where relevant;
+- admin test-account lifecycle and privileged-boundary verification where an admin role exists.
+
+If any mandatory gate is blocked by an external resource that the agent cannot create, the project is NOT READY until the developer completes the documented manual action and the agent re-verifies it.
+
