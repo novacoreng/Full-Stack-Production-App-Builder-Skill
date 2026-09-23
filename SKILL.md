@@ -522,3 +522,108 @@ Once the user accepts the PRD, execute the roadmap phase by phase. Do not repeat
 PROJECT_STATE.md must record current phase, completed work, pending work, decisions, tests, failures, environment requirements, and next action.
 
 AGENT_HANDOFF.md must record current phase/task, files changed, DB/API changes, known issues, tests, failures, environment requirements, next action, and things not to redo.
+
+
+## Infrastructure and connected-service orchestration
+Infrastructure is part of the product implementation. After PRD/TRD acceptance, create and maintain an **Infrastructure/Service Dependency Matrix**.
+
+Before implementation when GitHub is available:
+- ask for the target GitHub repository link, or confirm the repository already supplied;
+- confirm branch strategy and authorization to commit/push;
+- inspect the existing repository before modifying it;
+- checkpoint the starting state;
+- commit meaningful milestones as authorized and verify remote state.
+
+Select services from requirements; do not assume every connected provider is needed. Examples include Supabase, Vercel, Cloudflare, AWS, OneSignal, payment providers, email/SMS, storage, analytics, observability, queues, search, and AI/model providers.
+
+For every required provider/resource:
+1. identify the exact resource and environment;
+2. determine whether the connected tool can create/configure it;
+3. provision/configure it when supported;
+4. apply least privilege, environment separation, security policies, retention, webhooks, domains/DNS, and observability as applicable;
+5. record resource identifiers/links and secret *names* in project state, never secret values;
+6. verify the resource with runtime/configuration evidence.
+
+Use separate development, preview, staging, and production resources/credentials whenever practical. Never use production credentials for routine development or automated tests.
+
+### Missing infrastructure/resource rule
+If a required folder, project, database, bucket, domain, DNS record, OAuth application, webhook, API key, signing credential, billing setup, notification app, or other resource cannot be created by the connected tools:
+- mark the dependency BLOCKED;
+- tell the developer exactly what must be created and where;
+- give the minimum required permission;
+- provide current official provider setup instructions;
+- offer to work through the setup step by step;
+- resume configuration and verification after the developer confirms completion.
+
+Never silently replace a required production integration with a mock and call the app complete. Never invent IDs, URLs, credentials, or success states.
+
+## Secure post-build test-admin workflow
+After a successful **non-production** build/deployment, if the product has an admin role, create or provision a dedicated test-admin account for verification.
+
+Rules:
+- staging/preview/development by default;
+- never create a hidden production backdoor;
+- never hardcode a universal username/password;
+- prefer provider-supported invitation or temporary credentials, otherwise generate a strong random credential;
+- store credentials only in the approved secret manager/test vault;
+- never place passwords/tokens in source, GitHub, README, screenshots, logs, analytics, or handoff files;
+- use least privilege;
+- require MFA where supported;
+- record account identifier, environment, role, secret reference, owner, expiry/rotation, and verification status;
+- disable/revoke temporary accounts and rotate temporary credentials after the test window.
+
+Use the test-admin account to verify login/session handling, MFA/recovery, admin UI/API authorization, CRUD/moderation/approval operations, user/account management, role boundaries, audit logs, notifications, exports, destructive-action protection, session expiry, rate limits, and failure/recovery behavior. Also prove that an ordinary user cannot perform the same privileged actions through direct API calls.
+
+Do not mark admin testing complete until both UI and backend authorization boundaries are verified.
+
+## Secure software supply chain
+Before release, where applicable:
+- lock/pin dependencies and review lockfile changes;
+- run dependency/SCA and secret scanning;
+- run SAST and relevant security tests;
+- review dependency licenses where required;
+- generate an SBOM/dependency inventory;
+- scan container images when containers are used;
+- protect production CI/CD environments;
+- use least-privilege, short-lived deployment identities where supported;
+- retain a rollback-capable artifact/version;
+- verify the exact commit/artifact deployed;
+- monitor post-release security and dependency alerts.
+
+Do not claim certification or formal compliance merely because these checks passed.
+
+## Reliability and operations
+For production systems, assess:
+- health/readiness/liveness checks;
+- structured logs and correlation/request IDs;
+- metrics, traces, and alert thresholds;
+- queues/background jobs where required;
+- retries with bounded backoff;
+- idempotency;
+- timeouts and circuit/failure handling where justified;
+- rate limiting and abuse controls;
+- feature flags/kill switches where appropriate;
+- migrations and rollback;
+- backups and restore verification;
+- disaster recovery RTO/RPO;
+- incident response/runbooks;
+- capacity/performance thresholds;
+- cost budgets and provider usage limits.
+
+## Requirements-to-release traceability gate
+Maintain traceability:
+
+**Requirement → Process Flow → UI/UX → API → Database → Integration/Infrastructure → Test → Verification Evidence → Release/Commit**
+
+A requirement is not considered delivered when only the UI exists. A release cannot be declared production-ready when a required link in the chain is missing.
+
+## Engineering standards baseline
+Use current authoritative engineering standards as verification references where applicable:
+- OWASP ASVS for web application security verification;
+- OWASP SAMM for secure-development maturity/process;
+- NIST SSDF for secure software development practices;
+- NIST's generative-AI SSDF profile when the product includes AI/model development or integration;
+- WCAG 2.2 for web accessibility unless applicable requirements call for another baseline.
+
+Record the version/date used. Standards are engineering baselines and do not by themselves establish legal compliance or certification.
+
