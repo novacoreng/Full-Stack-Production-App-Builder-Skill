@@ -647,3 +647,11 @@ In addition to functional/security checks, production readiness must consider:
 
 If any mandatory gate is blocked by an external resource that the agent cannot create, the project is NOT READY until the developer completes the documented manual action and the agent re-verifies it.
 
+
+## Technology selection principle
+
+The skill is technology-neutral and requirement-driven. Never force React Native, Expo, Clerk, Convex, Supabase, Next.js, PostgreSQL, Vercel, AWS, Cloudflare, or any other framework, platform, authentication provider, backend, database, hosting provider, or service into a project merely because it is available or commonly used.
+
+Treat technologies such as React Native, Expo, Clerk, and Convex as optional candidates. Select them only when the accepted PRD/TRD shows that they fit the product's platform requirements, data model, authentication needs, realtime behavior, security requirements, existing infrastructure, cost, scalability, and maintenance constraints.
+
+Before implementation, compare viable alternatives when the choice is material, record the selected architecture and rationale in the TRD/architecture decision record, and preserve existing infrastructure when migration is not justified. The objective is to optimize the technology stack for the product—not to optimize the product around the skill's technology preferences.
