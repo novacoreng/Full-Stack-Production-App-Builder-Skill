@@ -5,653 +5,151 @@ description: Build production-grade web and mobile apps from idea through discov
 
 # Full-Stack Production App Builder
 
-Build the product as one connected system from idea to verified production release. This skill is platform-neutral and should be usable by coding agents, Claude Skills, ChatGPT Skills, Codex-style agents, and similar systems.
+Build the product as one connected system from idea to verified production release. This skill is platform-neutral and requirement-driven.
 
 ## Core rules
 1. Understand before building.
 2. Ask targeted questions when material information is missing.
-3. Confirm the official project name before development.
-4. Confirm the logo/icon/brand identity; create one if the user wants or no identity exists.
-5. Map complete user and system process flows before implementation.
-6. Resolve material requirements, tweaks, open questions, and acceptance criteria before PRD acceptance.
-7. Do not code until the PRD is explicitly accepted, unless the user explicitly requests a prototype or discovery-only implementation.
-8. After PRD acceptance, proceed through the roadmap automatically unless genuinely blocked.
-9. Never count UI-only behavior as complete functionality.
-10. Never fake production functionality. Mocks are temporary development aids only.
-11. Treat frontend, backend, database, integrations, and infrastructure as one system.
-12. Maintain API contracts and database migration discipline.
-13. Test success, failure, recovery, concurrency, offline, and interrupted flows where applicable.
-14. Build mobile-first, responsive, adaptive, accessible, and performance-conscious experiences.
-15. Support compact, standard, large, foldable, tablet, landscape, split-screen, and resizable windows when relevant.
-16. Do not hardcode device names or rely on a single viewport.
-17. Preserve state across rotation, resize, fold/unfold, app restart, and other configuration changes where applicable.
-18. Debug systematically and never stop at the first error.
-19. Maintain PROJECT_STATE.md and AGENT_HANDOFF.md continuously.
-20. Never commit secrets.
-21. Do not claim production readiness without evidence that required gates passed.
+3. Confirm project name and logo/icon before development.
+4. Map complete user and system process flows before implementation.
+5. Resolve material requirements, tweaks, open questions, and acceptance criteria before PRD acceptance.
+6. Do not code until the PRD is explicitly accepted unless the user explicitly requests a prototype/discovery implementation.
+7. After PRD acceptance, proceed through the roadmap automatically unless genuinely blocked.
+8. Treat frontend, backend, database, integrations, notifications, and infrastructure as one system.
+9. Select technology from requirements; never force React Native, Expo, Clerk, Convex, Supabase, Next.js, PostgreSQL, Vercel, AWS, Cloudflare, or any other technology merely because it is available.
+10. Build production-grade, responsive, adaptive, accessible experiences for relevant phones, foldables, tablets, desktop, and web environments.
+11. Never commit secrets.
+12. Never claim production readiness or external configuration without evidence.
+13. Maintain PROJECT_STATE.md, AGENT_HANDOFF.md, CHANGELOG.md, and relevant phase records continuously.
 
-## Phase 0 — Discovery and project identity
-Before coding:
-- Understand the idea, business problem, target users, geography, platforms, monetization, integrations, compliance, and success criteria.
-- Confirm official project name.
-- Confirm or create logo/icon and core brand direction.
-- Identify guest, first-time, returning, authenticated, staff/admin, and other relevant personas.
-- Ask only questions that materially affect architecture, UX, cost, security, compliance, or scope.
-- Maintain an Open Questions / Decisions register.
+## Phase-based delivery
+Every project MUST be divided into explicit numbered phases derived from the accepted PRD, TRD, process-flow matrix, capability matrix, and architecture decisions.
 
-## Phase 1 — Complete process flows
-Map the entire experience from launch to successful use and continued return.
+Before each phase, state:
+- objective;
+- requirements/features covered;
+- frontend work;
+- backend/API work;
+- database/migrations;
+- integrations/infrastructure;
+- notifications/communication where applicable;
+- security/access-control work;
+- tests and acceptance criteria;
+- expected GitHub checkpoint.
 
-At minimum consider:
-- launch/splash/onboarding
-- guest path
-- signup/login/logout/session recovery
-- permissions
-- home/discovery
-- core business journey
-- forms and validation
-- payments/refunds where relevant
-- notifications
-- search/messaging where relevant
-- profile/account/settings
-- admin/operations
-- offline/reconnect/synchronization
-- failures/retries/timeouts
-- interrupted journeys and state restoration
+### Mandatory phase loop
+**Build → Test → Verify → Fix → Lock → Commit → Move to next phase.**
 
-For every important flow trace:
-user action → UI → validation → API → authentication/authorization → backend logic → database → external service → response → UI state → success/error/recovery.
+A phase is not locked until applicable acceptance criteria and required verification pass, or a genuine external blocker is documented. After a successful lock, automatically begin the next phase; do not require the user to say “proceed.”
 
-Maintain a process-flow coverage matrix so each flow has corresponding frontend, backend, database, auth, and test coverage.
+### GitHub checkpoint rule
+When a GitHub repository is connected and authorized:
+1. inspect repository state before the phase;
+2. build the phase;
+3. test, verify, and fix;
+4. update state/handoff/changelog and relevant docs;
+5. create a meaningful phase checkpoint commit;
+6. verify the commit SHA and changed files remotely;
+7. only then lock the phase and move forward.
 
-## Phase 2 — Product contract and PRD
-Create a Product Contract as the source of truth. Give requirements stable IDs such as REQ-001.
+Do not batch multiple completed phases into one final commit. The Git history should show the build progression. Example messages:
+- `Phase 01: project foundation`
+- `Phase 02: authentication and onboarding`
+- `Phase 03: core data and backend`
+- `Phase 04: notifications and integrations`
 
-PRD should include:
-- executive summary
-- vision/problem/goals/non-goals
-- target users/personas/user journeys
-- process flows
-- functional requirements
-- authentication/authorization
-- payments
-- notifications
-- search/messaging
-- admin/analytics
-- localization
-- accessibility
-- security/performance/offline/error handling
-- compliance
-- platform requirements
-- design requirements
-- acceptance criteria
-- MVP and future scope
+Never claim a commit/push occurred without tool evidence.
 
-Do not accept the PRD while material requirements, flows, tweaks, or acceptance criteria remain unresolved.
+## TRD-driven infrastructure and backend
+The TRD is authoritative for backend and infrastructure requirements. During every phase, configure the backend resources required by that phase rather than postponing backend work until the end.
 
-## Phase 3 — TRD and architecture
-Select technology based on requirements, not habit.
+Consider, where applicable:
+- database/schema/migrations;
+- authentication/authorization/RLS;
+- storage buckets and access rules;
+- server functions/API routes;
+- queues/background jobs/scheduled tasks;
+- webhooks;
+- payments;
+- email/SMS;
+- push notifications;
+- analytics/observability/error tracking;
+- realtime;
+- search/file processing;
+- AI/model providers;
+- DNS/domains/hosting;
+- environment variables/secrets;
+- backups/recovery;
+- rate limits/usage controls.
 
-Cover:
-- system architecture
-- web/mobile architecture
-- frontend/backend boundaries
-- API architecture
-- database architecture
-- authentication/authorization
-- storage
-- payments
-- notifications
-- queues/background jobs
-- caching
-- observability
-- security
-- testing
-- CI/CD
-- deployment
-- environment variables/secrets
-- backup/recovery
-- scalability
-- third-party services
-- technology tradeoffs
+If a required provider is connected and tooling permits the action, configure it during the relevant phase and verify it. Use least privilege and never expose secrets.
 
-Record architectural decisions and alternatives rejected.
+### Missing provider/resource protocol
+If a required provider or resource is not connected or cannot be created with available tooling:
+1. mark it `BLOCKED` in the infrastructure matrix;
+2. explain why it is required and which phase depends on it;
+3. identify the exact connection, permission, project, bucket, database, DNS record, OAuth app, webhook, credential, notification app, or other resource required;
+4. give concise setup steps using current official documentation where appropriate;
+5. offer to guide the developer step-by-step;
+6. resume configuration when available;
+7. verify the resource before locking the dependent phase.
 
-## Phase 4 — UX/UI
-Design mobile-first rather than shrinking desktop layouts.
+Never invent IDs, URLs, credentials, deployments, or configuration status.
 
-Define:
-- information architecture
-- navigation
-- design tokens
-- typography
-- color
-- spacing
-- components
-- forms
-- cards
-- modals/sheets
-- loading/skeleton states
-- empty states
-- error/success states
-- accessibility
-- responsive/adaptive behavior
+### Notifications
+Notifications are backend infrastructure, not UI-only features. When required, configure and verify the complete event → backend → provider → device → tap/deep-link flow, including platform credentials, environments, permission handling, device-token registration/refresh, server-side authorization, templates, preferences/opt-out, retries/errors, rate limits, analytics/receipts where supported, and test delivery.
 
-If Figma is available and appropriate, use the platform's Figma workflow. Translate PRD → IA → design system → screens/components → implementation → visual verification.
+### Backend verification gate
+Before locking a backend-changing phase, verify as applicable:
+- migration applied and schema matches TRD;
+- authorization/RLS enforced server-side;
+- API contract matches frontend;
+- secrets remain server-side;
+- webhook signatures and idempotency are handled;
+- error/timeout/retry behavior is tested;
+- observability is available;
+- required external services are reachable;
+- notification/payment/email integrations work;
+- environments are not accidentally mixed.
 
-## Phase 5 — Adaptive web and mobile
-Use available window size and constraints rather than device-specific assumptions.
+Record provider, environment, resource, safe ID/reference, configuration, permission scope, verification, phase, commit SHA, and manual owner action. Never record secret values.
 
-Support, when relevant:
-- compact phone
-- standard phone
-- large/tall phone
-- foldable cover display
-- foldable inner display
-- folded/unfolded states
-- half-open/tabletop/book posture
-- tablet
-- portrait/landscape
-- split-screen/multi-window
-- resizable desktop windows
-- desktop web
+## Final traceability
+The final project document must show:
+**requirements → process flow → phase → code → backend/infrastructure → tests → verification → GitHub checkpoint → deployment/version evidence.**
 
-Adapt navigation and composition as space changes: bottom navigation → rail/sidebar; single column → multi-column; list → list/detail; bottom sheet → side sheet; compact cards → expanded cards.
+## Phase lock record
+For every locked phase record:
+- phase number/name;
+- requirements/features completed;
+- files/systems changed;
+- backend/infrastructure changes;
+- tests and results;
+- verification evidence;
+- bugs and fixes;
+- acceptance criteria status;
+- blockers/limitations;
+- checkpoint commit SHA;
+- next phase.
 
-Respect safe areas, status/navigation bars, gesture navigation, cutouts, keyboard/insets, edge-to-edge behavior, dynamic type, and accessibility scaling. Keep critical controls/content away from hinges/fold regions.
-
-When current platform behavior matters, verify current official Apple/Android/platform documentation rather than relying on stale memory.
-
-## Phase 6 — Implementation
-Build in a dynamic roadmap of coherent phases. Before each phase state:
-- objectives
-- features
-- files/systems affected
-- dependencies
-- tests
-- acceptance criteria
-- next phase
-
-### Mandatory phase execution loop
-Every implementation phase MUST follow this exact sequence:
-
-**Build → Test → Verify → Fix → Lock → Move to next phase.**
-
-1. **Build** — Implement the phase's approved requirements and all required frontend, backend, database, integration, security, and infrastructure work.
-2. **Test** — Run the tests relevant to the phase, including unit/component/integration/API/database/E2E/browser/device/accessibility/performance checks as applicable.
-3. **Verify** — Compare the implementation against the phase objectives, acceptance criteria, process-flow coverage, API/DB contracts, UX/UI requirements, and real runtime behavior. Do not treat a successful compile as verification.
-4. **Fix** — Resolve every discovered failure, mismatch, regression, or incomplete requirement. Repeat **Build → Test → Verify → Fix** until the phase passes or a genuine external blocker prevents completion.
-5. **Lock** — Declare the phase complete only after its acceptance criteria pass. Update PROJECT_STATE.md, AGENT_HANDOFF.md, CHANGELOG.md and other relevant documentation; record the verification evidence; create a checkpoint Git commit when Git is available and authorized. A locked phase must not be casually reopened or changed by later work without change-impact analysis.
-6. **Move to next phase** — Automatically begin the next approved phase. Do not ask the user to say “proceed” after a successfully locked phase.
-
-A phase is **not complete** if any required test, acceptance criterion, integration, security check, runtime verification, or documentation update is still failing or unresolved.
-
-### Phase lock record
-For every locked phase, record:
-- phase number and name
-- requirements/features completed
-- files/systems changed
-- tests executed and results
-- verification evidence
-- bugs found and fixes applied
-- acceptance criteria status
-- known limitations or blockers
-- checkpoint commit SHA
-- next phase
-
-If a phase fails after being locked because of a later change, do not silently modify the locked result. Perform change-impact analysis, document the regression, fix it, re-run the affected verification, and create a new checkpoint commit.
-
-## Backend/API requirements
-Every production API should define:
-- method and route
-- authentication/authorization
-- request schema
-- response schema
-- validation
-- error model
-- database interactions
-- side effects
-- idempotency where relevant
-- rate limits
-- logging/audit behavior
-
-Use contract tests where useful to catch frontend/backend field mismatches.
-
-## Database requirements
-Define:
-- entities and relationships
-- tables
-- primary/foreign keys
-- constraints
-- indexes
-- enums/status values
-- timestamps/audit fields
-- migrations
-- seeds where appropriate
-- row-level/security policies where supported
-- retention/deletion/export/archive/restore behavior
-
-Use ordered migrations such as 001_initial_schema, 002_add_payments, etc. Never rely on undocumented manual database edits.
-
-## Authentication, authorization, and payments
-Use real integrations for production functionality.
-
-Authentication:
-- secure sessions/tokens
-- password/OTP/social auth as specified
-- account recovery
-- session expiry
-- role/permission matrix
-- authorization at backend boundaries
-
-Payments:
-- server-side verification
-- signed webhook verification
-- idempotency
-- duplicate protection
-- transaction states
-- retries
-- refunds/chargebacks where relevant
-- payment history
-- interrupted payment recovery
-
-## Security
-Audit:
-- authentication
-- authorization
-- RLS/access policies
-- secrets
-- API exposure
-- CORS/CSRF where applicable
-- XSS/injection risks
-- input validation
-- file uploads
-- rate limiting
-- session/token handling
-- dependency vulnerabilities
-- sensitive information in logs
-- third-party permissions
-
-Never commit .env files, private keys, credentials, service-account files, or other secrets.
-
-## Legal, privacy, and compliance audit
-Treat legal/compliance as an engineering workstream, not a last-minute policy-page task. This is a code and product audit workflow, **not legal advice**. Determine which requirements actually apply from the project's jurisdictions, users, data, business model, integrations, and content. Do not apply a US-specific rule globally without checking applicability.
-
-For every project, inspect the actual codebase and document evidence. Do not assume a control exists because a policy says it exists.
-
-At minimum, where applicable, audit these six exposure areas highlighted by the supplied legal-audit prompt:
-
-1. **Age gating / child privacy**
-   - Find every account-creation path: signup, OAuth callbacks, magic links, mobile onboarding, and equivalent flows.
-   - If the applicable product/legal requirements require an age gate, enforce it server-side before account creation and avoid retaining prohibited data from rejected attempts.
-   - Also inspect unauthenticated forms that collect names, emails, photos, or similar personal data.
-   - Do not hard-code a specific age threshold unless the applicable requirements and product jurisdiction support it.
-
-2. **Third-party fonts, CSS, scripts, and other remote resources**
-   - Search for remote font/CSS/JS resources and CDNs loaded by the application.
-   - Prefer self-hosting resources when appropriate for privacy, reliability, and compliance requirements.
-   - For third-party resources that must remain, document the provider, purpose, data exposure, and legal/privacy basis or required consent.
-
-3. **Analytics, session replay, and behavioral recording**
-   - Find analytics, session replay, heatmaps, keystroke logging, rage-click recording, and similar SDKs.
-   - Default sensitive recording features to off.
-   - Where recording is permitted and retained, mask sensitive inputs and never record passwords, payment secrets, or other prohibited sensitive fields.
-   - Implement explicit, revocable consent where the applicable jurisdiction/processing requires it, and persist the user's choice.
-   - Verify that consent state actually controls SDK initialization/recording behavior.
-
-4. **Commercial email and unsubscribe controls**
-   - Identify every commercial/marketing email path and distinguish it from transactional messages.
-   - Where applicable, implement working unsubscribe/suppression behavior, required sender/address information, and required email headers.
-   - Check the suppression list before sending marketing mail.
-   - Document the jurisdiction-specific retention and honoring requirements rather than assuming one statutory period applies everywhere.
-
-5. **Subscriptions and automatic renewal**
-   - Audit pricing, checkout, subscribe buttons, free trials, renewal notices, cancellation, and billing-state handling.
-   - Where automatic-renewal laws apply, show required price, renewal interval, automatic-renewal disclosure, and cancellation information at the appropriate point in the purchase flow.
-   - Make cancellation accessible and verify backend subscription state transitions.
-   - Send required transactional confirmation/reminder communications where applicable.
-   - Test interrupted checkout, duplicate events, cancellation, renewal, refund, and failed-payment states.
-
-6. **User uploads, copyright, and takedown processes**
-   - Find every upload path for images, files, text, avatars, posts, attachments, and generated content that may contain third-party work.
-   - Where applicable, provide copyright/takedown procedures, contact information, reporting controls, and repeat-infringer handling.
-   - If a US DMCA safe-harbor strategy is applicable, separately track the designated-agent registration/maintenance requirement and the in-product policy/contact information. Do not claim registration is complete from code alone.
-
-Also inspect:
-- privacy policy and terms pages
-- footer and signup links to those policies
-- actual third-party processors/services used by the code
-- cookie/tracking consent behavior
-- whether tracking begins before required consent
-- whether consent choices are stored and revocable
-- secrets, API keys, personal data, or sensitive information exposed in client bundles, source maps, logs, analytics payloads, or error reports.
-
-### Legal/compliance audit output
-For each applicable item, produce:
-- **Found** — what the codebase actually contains, with evidence.
-- **Changed** — the code/config/documentation changes made.
-- **You still need to** — actions requiring the owner, legal counsel, service provider, regulator, or external registration.
-- **Applicability** — jurisdiction/product assumption or unresolved question.
-- **Verification** — tests/evidence showing the control works.
-
-Do not present statutory penalty figures from a source as universal or guaranteed exposure. If external legal claims, thresholds, deadlines, or penalties are relevant, verify them against authoritative current sources and identify the jurisdiction and effective date.
-
-
-## Performance and reliability
-Web:
-- bundle size
-- code splitting/lazy loading
-- image optimization
-- caching
-- server/database latency
-- Core Web Vitals where relevant
-
-Mobile:
-- startup time
-- rendering/jank
-- memory
-- network use
-- battery
-- large lists
-- image performance
-- offline behavior
-
-Backend:
-- query performance
-- indexes
-- caching
-- queues
-- concurrency
-- timeouts
-- retries
-- circuit/failure handling where justified
-
-## Testing and verification
-Use the appropriate combination of:
-- unit tests
-- component tests
-- integration tests
-- API tests
-- database tests
-- E2E tests
-- browser tests
-- device tests
-- visual regression
-- accessibility checks
-- performance tests
-- security checks
-
-Create DEVICE_TEST_MATRIX.md for projects with UI. Include compact/standard/large phones, foldables, tablets, portrait/landscape, split-screen/resizable windows, desktop browsers, and relevant hardware permissions/features.
-
-Test realistic states:
-- empty
-- one item
-- many items
-- invalid data
-- duplicate data
-- deleted data
-- expired session
-- unauthorized access
-- slow/intermittent/offline network
-- server failure
-- timeout
-- app/browser closed mid-flow
-- payment interruption
-- rotation/fold/resize during a flow
-
-Test the launch-to-enjoyment journey: install/open → splash → onboarding → sign-up/login/guest → permissions → home → discovery → core action → success → feedback → continued use → reopen → state restore.
-
-## Debugging loop
-Never stop after the first error.
-
-Inspect:
-- project structure
-- package/config files
-- dependencies
-- environment
-- TypeScript/types
-- imports
-- components/hooks/state
-- routing
-- API contracts
-- backend logic
-- database
-- auth/authz
-- styling/layout
-- build configuration
-- platform configuration
-- tests
-- runtime/browser/device behavior
-
-For each bug record:
-BUG ID | file | line/area | problem | expected | actual | root cause | fix | verification.
-
-Repeat:
-build → capture errors → root cause → fix → build → tests → runtime/browser/device → security → performance.
-
-## Change management
-For every material feature/tweak, perform change-impact analysis across:
-PRD → product contract → process flows → UX → UI → API → DB → frontend → backend → security → tests → docs → deployment.
-
-Do not ask again about a decision already fixed in the accepted PRD.
+A later regression requires change-impact analysis, a fix, re-verification, and a new checkpoint commit.
 
 ## Definition of Done
 A feature is complete only when applicable items pass:
-- requirement mapped
-- process flow mapped
-- UI implemented
-- API implemented
-- database implemented/migrated
-- validation implemented
-- loading/empty/error/success states handled
-- authentication/authorization handled
-- security reviewed
-- tests added/passed
-- accessibility checked
-- responsive/adaptive behavior verified
-- documentation updated
-- acceptance criteria passed
+- requirement and process flow mapped;
+- UI implemented;
+- API/backend implemented;
+- database implemented/migrated;
+- integrations/infrastructure configured;
+- notifications configured where required;
+- loading/empty/error/success states handled;
+- authentication/authorization handled;
+- security reviewed;
+- accessibility checked;
+- responsive/adaptive behavior verified;
+- tests passed;
+- documentation updated;
+- acceptance criteria passed;
+- GitHub checkpoint created and verified.
 
-## Production audit
-Before claiming production readiness verify:
-- legal/privacy/compliance audit completed for applicable jurisdictions
-- age/child-privacy controls where applicable
-- third-party resource/data-processor inventory
-- analytics/session-replay consent and masking where applicable
-- marketing-email compliance and suppression behavior where applicable
-- subscription/renewal/cancellation disclosures and flows where applicable
-- user-upload/copyright/takedown controls where applicable
-- privacy policy, terms, cookie/consent documentation, and required links reviewed against actual code
-- requirements/process flows/acceptance
-- UX/UI/responsive/adaptive/accessibility
-- frontend typecheck/lint/build/tests
-- backend APIs/validation/auth/authz/errors
-- DB schema/migrations/indexes/security/backups
-- security/secrets/dependencies/input/API exposure
-- performance
-- unit/integration/E2E/browser/device testing
-- deployment/environment/build/domain/SSL/monitoring
-- Git status and secret scan
-- README and required documentation
-- final repository state and remote verification
-
-If mandatory gates fail, explicitly report NOT PRODUCTION READY and list blockers.
-
-## Documentation
-Always create/update the relevant core documentation:
-- README.md
-- PRD.md
-- TRD.md
-- PRODUCT_CONTRACT.md
-- PROCESS-FLOWS.md
-- ARCHITECTURE.md
-- DATABASE.md
-- API.md
-- UI-UX.md
-- FEATURE_MATRIX.md
-- ROLE_PERMISSION_MATRIX.md
-- TESTING.md
-- SECURITY.md
-- DEPLOYMENT.md
-- CHANGELOG.md
-- PROJECT_STATE.md
-- AGENT_HANDOFF.md
-- DEVICE_TEST_MATRIX.md
-
-Only omit documents that are genuinely irrelevant, and record why.
-
-## GitHub
-When GitHub tooling is available and authorized:
-1. inspect status and remote
-2. inspect for secrets
-3. checkpoint significant milestones
-4. run required tests/builds
-5. commit meaningful changes
-6. push only after verification
-7. verify remote state
-
-Never claim a push happened unless the tool confirms it.
-
-## Tool orchestration
-Use connected tools when available for GitHub, Supabase/database, Vercel/deployment, Figma/design, browser automation, payments, notifications, and file operations. Before using a tool, follow that tool's installed skill instructions when required. If a required external capability is unavailable, identify the exact blocker and provide the smallest manual action needed.
-
-## Autonomous execution
-Once the user accepts the PRD, execute the roadmap phase by phase. Do not repeatedly ask for permission to continue. Pause only for a genuinely blocking decision, missing credential/access, destructive action requiring confirmation, or unresolved material requirement.
-
-## Handoff
-PROJECT_STATE.md must record current phase, completed work, pending work, decisions, tests, failures, environment requirements, and next action.
-
-AGENT_HANDOFF.md must record current phase/task, files changed, DB/API changes, known issues, tests, failures, environment requirements, next action, and things not to redo.
-
-
-## Infrastructure and connected-service orchestration
-Infrastructure is part of the product implementation. After PRD/TRD acceptance, create and maintain an **Infrastructure/Service Dependency Matrix**.
-
-Before implementation when GitHub is available:
-- ask for the target GitHub repository link, or confirm the repository already supplied;
-- confirm branch strategy and authorization to commit/push;
-- inspect the existing repository before modifying it;
-- checkpoint the starting state;
-- commit meaningful milestones as authorized and verify remote state.
-
-Select services from requirements; do not assume every connected provider is needed. Examples include Supabase, Vercel, Cloudflare, AWS, OneSignal, payment providers, email/SMS, storage, analytics, observability, queues, search, and AI/model providers.
-
-For every required provider/resource:
-1. identify the exact resource and environment;
-2. determine whether the connected tool can create/configure it;
-3. provision/configure it when supported;
-4. apply least privilege, environment separation, security policies, retention, webhooks, domains/DNS, and observability as applicable;
-5. record resource identifiers/links and secret *names* in project state, never secret values;
-6. verify the resource with runtime/configuration evidence.
-
-Use separate development, preview, staging, and production resources/credentials whenever practical. Never use production credentials for routine development or automated tests.
-
-### Missing infrastructure/resource rule
-If a required folder, project, database, bucket, domain, DNS record, OAuth application, webhook, API key, signing credential, billing setup, notification app, or other resource cannot be created by the connected tools:
-- mark the dependency BLOCKED;
-- tell the developer exactly what must be created and where;
-- give the minimum required permission;
-- provide current official provider setup instructions;
-- offer to work through the setup step by step;
-- resume configuration and verification after the developer confirms completion.
-
-Never silently replace a required production integration with a mock and call the app complete. Never invent IDs, URLs, credentials, or success states.
-
-## Secure post-build test-admin workflow
-After a successful **non-production** build/deployment, if the product has an admin role, create or provision a dedicated test-admin account for verification.
-
-Rules:
-- staging/preview/development by default;
-- never create a hidden production backdoor;
-- never hardcode a universal username/password;
-- prefer provider-supported invitation or temporary credentials, otherwise generate a strong random credential;
-- store credentials only in the approved secret manager/test vault;
-- never place passwords/tokens in source, GitHub, README, screenshots, logs, analytics, or handoff files;
-- use least privilege;
-- require MFA where supported;
-- record account identifier, environment, role, secret reference, owner, expiry/rotation, and verification status;
-- disable/revoke temporary accounts and rotate temporary credentials after the test window.
-
-Use the test-admin account to verify login/session handling, MFA/recovery, admin UI/API authorization, CRUD/moderation/approval operations, user/account management, role boundaries, audit logs, notifications, exports, destructive-action protection, session expiry, rate limits, and failure/recovery behavior. Also prove that an ordinary user cannot perform the same privileged actions through direct API calls.
-
-Do not mark admin testing complete until both UI and backend authorization boundaries are verified.
-
-## Secure software supply chain
-Before release, where applicable:
-- lock/pin dependencies and review lockfile changes;
-- run dependency/SCA and secret scanning;
-- run SAST and relevant security tests;
-- review dependency licenses where required;
-- generate an SBOM/dependency inventory;
-- scan container images when containers are used;
-- protect production CI/CD environments;
-- use least-privilege, short-lived deployment identities where supported;
-- retain a rollback-capable artifact/version;
-- verify the exact commit/artifact deployed;
-- monitor post-release security and dependency alerts.
-
-Do not claim certification or formal compliance merely because these checks passed.
-
-## Reliability and operations
-For production systems, assess:
-- health/readiness/liveness checks;
-- structured logs and correlation/request IDs;
-- metrics, traces, and alert thresholds;
-- queues/background jobs where required;
-- retries with bounded backoff;
-- idempotency;
-- timeouts and circuit/failure handling where justified;
-- rate limiting and abuse controls;
-- feature flags/kill switches where appropriate;
-- migrations and rollback;
-- backups and restore verification;
-- disaster recovery RTO/RPO;
-- incident response/runbooks;
-- capacity/performance thresholds;
-- cost budgets and provider usage limits.
-
-## Requirements-to-release traceability gate
-Maintain traceability:
-
-**Requirement → Process Flow → UI/UX → API → Database → Integration/Infrastructure → Test → Verification Evidence → Release/Commit**
-
-A requirement is not considered delivered when only the UI exists. A release cannot be declared production-ready when a required link in the chain is missing.
-
-## Engineering standards baseline
-Use current authoritative engineering standards as verification references where applicable:
-- OWASP ASVS for web application security verification;
-- OWASP SAMM for secure-development maturity/process;
-- NIST SSDF for secure software development practices;
-- NIST's generative-AI SSDF profile when the product includes AI/model development or integration;
-- WCAG 2.2 for web accessibility unless applicable requirements call for another baseline.
-
-Record the version/date used. Standards are engineering baselines and do not by themselves establish legal compliance or certification.
-
-
-
-## Expanded production-readiness gates
-In addition to functional/security checks, production readiness must consider:
-- infrastructure/service dependency matrix complete;
-- environment separation and least-privilege provider access;
-- deployment artifact/commit traceability;
-- dependency/SCA/secret/SAST checks where applicable;
-- SBOM/dependency inventory where appropriate;
-- health/readiness and post-deploy smoke checks;
-- observability, alert ownership, incident runbooks;
-- backups, restore verification, RTO/RPO and rollback;
-- rate limits, idempotency, retries/timeouts and abuse controls;
-- cost/usage budgets and provider quotas;
-- regulatory/platform applicability matrix;
-- app-store/platform requirements where relevant;
-- admin test-account lifecycle and privileged-boundary verification where an admin role exists.
-
-If any mandatory gate is blocked by an external resource that the agent cannot create, the project is NOT READY until the developer completes the documented manual action and the agent re-verifies it.
-
-
-## Technology selection principle
-
-The skill is technology-neutral and requirement-driven. Never force React Native, Expo, Clerk, Convex, Supabase, Next.js, PostgreSQL, Vercel, AWS, Cloudflare, or any other framework, platform, authentication provider, backend, database, hosting provider, or service into a project merely because it is available or commonly used.
-
-Treat technologies such as React Native, Expo, Clerk, and Convex as optional candidates. Select them only when the accepted PRD/TRD shows that they fit the product's platform requirements, data model, authentication needs, realtime behavior, security requirements, existing infrastructure, cost, scalability, and maintenance constraints.
-
-Before implementation, compare viable alternatives when the choice is material, record the selected architecture and rationale in the TRD/architecture decision record, and preserve existing infrastructure when migration is not justified. The objective is to optimize the technology stack for the product—not to optimize the product around the skill's technology preferences.
+All other workflows and capability registries in this repository remain applicable, including UX/UI, accessibility, skeleton loaders, semantic colors, clutter audits, testing, security, reliability, regulatory/compliance, AI, integrations, payments, and deployment.
