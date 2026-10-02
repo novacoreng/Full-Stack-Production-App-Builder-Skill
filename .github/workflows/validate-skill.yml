@@ -33,6 +33,10 @@ jobs:
           test -f templates/TEST-ADMIN.md
           test -f templates/REGULATORY-MATRIX.md
           test -f references/standards.md
+          test -f workflows/device-interactive-qa.md
+          test -f templates/DEVICE_INTERACTIVE_QA.md
+          grep -q 'Interactive runtime verification' SKILL.md
+          grep -q 'No silent dead controls' SKILL.md
 
       - name: Reject common secret/artifact files
         shell: bash
