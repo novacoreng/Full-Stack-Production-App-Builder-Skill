@@ -120,3 +120,7 @@ Before an environment is considered configured, verify:
 - rollback path is documented and tested where practical.
 
 A failed mandatory check blocks the environment from being declared ready.
+
+
+## Provider-aware QA
+For each external provider classify the test state as CONFIGURED, PARTIALLY CONFIGURED, SANDBOX READY, PROVIDER BLOCKED, or LIVE READY. Execute real sandbox/live calls only when credentials/environment authorize them. If credentials are unavailable, test to the provider boundary and keep the remainder PROVIDER BLOCKED; never substitute a mock result for provider verification.
