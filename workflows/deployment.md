@@ -39,3 +39,7 @@ Record the deployed commit/version and evidence.
 ## Failure
 
 If any mandatory gate fails, mark the release **NOT PRODUCTION READY**, identify the blocker, and fix/retest. Never hide deployment failures behind a successful build command.
+
+
+## Interactive release gate
+A successful deployment/build is not sufficient for production readiness. Before release, complete all interactive browser/device/API checks that the available environment supports, classify unavailable physical devices/providers explicitly, inspect runtime/backend logs, and attach the QA matrix/final verification evidence. Mandatory unverified high-risk flows remain production blockers.
