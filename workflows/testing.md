@@ -50,3 +50,6 @@ Test:
 ## Traceability
 
 Map each test to one or more requirement IDs and record verification evidence. A green build alone is not a release gate.
+
+## Interactive runtime QA
+Use `device-interactive-qa.md` for substantial apps. Static/automated checks do not replace real interaction. Discover available targets, run the actual stack, inventory reachable controls, activate controls where tooling permits, test product-specific journeys and failure paths, inspect runtime logs, retest fixes, and record evidence. Separate emulator/simulator, physical-device, and live-provider verification. No false verification or silent dead controls.
