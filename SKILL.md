@@ -40,6 +40,8 @@ Before each phase, state:
 ### Mandatory phase loop
 **Build → Test → Verify → Fix → Lock → Commit → Move to next phase.**
 
+TEST and VERIFY include interactive runtime/device/browser/API testing where applicable. Compilation, static checks, unit tests, or CI alone do not prove real-user functionality. Follow `workflows/device-interactive-qa.md` whenever the environment/tooling can run the product.
+
 A phase is not locked until applicable acceptance criteria and required verification pass, or a genuine external blocker is documented. After a successful lock, automatically begin the next phase; do not require the user to say “proceed.”
 
 ### GitHub checkpoint rule
@@ -147,9 +149,24 @@ A feature is complete only when applicable items pass:
 - security reviewed;
 - accessibility checked;
 - responsive/adaptive behavior verified;
+- static checks passed;
+- automated tests passed;
+- backend/database contract verified;
+- interactive action tested where runtime interaction is available;
+- relevant failure state tested;
+- authorization/privacy checked;
+- relevant runtime logs inspected;
+- regression test passed;
+- device/browser verification completed or explicitly marked pending/unavailable;
+- provider verification completed or explicitly marked blocked;
 - tests passed;
 - documentation updated;
 - acceptance criteria passed;
 - GitHub checkpoint created and verified.
 
 All other workflows and capability registries in this repository remain applicable, including UX/UI, accessibility, skeleton loaders, semantic colors, clutter audits, testing, security, reliability, regulatory/compliance, AI, integrations, payments, and deployment.
+
+## Interactive runtime verification
+A successful build is not proof that the application works for a real user. For substantial applications, discover the available QA environment, start the actual stack, install/launch where applicable, interact with reachable controls and product-specific journeys, monitor runtime logs, test failure paths, and record objective evidence.
+
+Use `workflows/device-interactive-qa.md` and `templates/DEVICE_INTERACTIVE_QA.md`. Distinguish IMPLEMENTED, AUTOMATED TESTED, EMULATOR/SIMULATOR TESTED, PHYSICAL DEVICE TESTED, and LIVE PROVIDER VERIFIED. Unknown remains UNKNOWN; blocked remains BLOCKED; not tested remains NOT TESTED. No silent dead controls.
