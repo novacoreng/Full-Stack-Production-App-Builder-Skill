@@ -43,6 +43,7 @@ jobs:
           test -f workflows/cloudflare-origin-security.md
           test -f templates/SECURITY_CONTROL_MATRIX.md
           test -f templates/APP_STORE_RELEASE_CHECKLIST.md
+          test -f templates/WORKFLOW-COVERAGE-MATRIX.md
           grep -q 'Interactive runtime verification' SKILL.md
           grep -q 'No silent dead controls' SKILL.md
           grep -q 'Security release gate' SKILL.md
@@ -51,6 +52,9 @@ jobs:
           grep -q 'AUDIT → THREAT MODEL → ATTACK TEST' SKILL.md
           grep -q 'AUDIT → BACKUP → PLAN → VERIFY RECOVERY' workflows/deployment.md
           grep -q 'Direct internet → origin HTTPS' workflows/cloudflare-origin-security.md
+          grep -q 'Strict workflow applicability gate' SKILL.md
+          grep -q 'There is no silent \*\*SKIPPED\*\* state' SKILL.md
+          grep -q 'Every file under' templates/WORKFLOW-COVERAGE-MATRIX.md
 
       - name: Reject common secret/artifact files
         shell: bash
