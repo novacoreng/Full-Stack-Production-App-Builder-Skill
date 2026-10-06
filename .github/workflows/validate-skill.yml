@@ -34,9 +34,14 @@ jobs:
           test -f templates/REGULATORY-MATRIX.md
           test -f references/standards.md
           test -f workflows/device-interactive-qa.md
+          test -f workflows/security.md
+          test -f templates/SECURITY.md
           test -f templates/DEVICE_INTERACTIVE_QA.md
           grep -q 'Interactive runtime verification' SKILL.md
           grep -q 'No silent dead controls' SKILL.md
+          grep -q 'Security release gate' SKILL.md
+          grep -q 'never trust the client' workflows/security.md
+          grep -q 'SECURITY GATES PASSED FOR CURRENT TESTED SCOPE' workflows/security.md
 
       - name: Reject common secret/artifact files
         shell: bash
