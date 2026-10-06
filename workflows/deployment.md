@@ -43,3 +43,11 @@ If any mandatory gate fails, mark the release **NOT PRODUCTION READY**, identify
 
 ## Interactive release gate
 A successful deployment/build is not sufficient for production readiness. Before release, complete all interactive browser/device/API checks that the available environment supports, classify unavailable physical devices/providers explicitly, inspect runtime/backend logs, and attach the QA matrix/final verification evidence. Mandatory unverified high-risk flows remain production blockers.
+
+
+## Infrastructure-sensitive change protocol
+For DNS, firewall, TLS/certificates, credential rotation, database/networking, payment/auth providers, callbacks and similar high-risk production changes use:
+
+**AUDIT → BACKUP → PLAN → VERIFY RECOVERY → APPLY → TEST → VERIFY → DOCUMENT**
+
+Do not destructively migrate infrastructure merely to match a preferred architecture. Keep infrastructure/security commits separate from unrelated UI changes. If access is unavailable, mark the work BLOCKED rather than claiming implementation.
