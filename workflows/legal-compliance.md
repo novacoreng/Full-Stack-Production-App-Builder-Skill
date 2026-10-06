@@ -173,3 +173,9 @@ Then provide a summary table:
 ## Important boundary
 
 This workflow does not provide legal advice. Penalty figures, statutory thresholds, deadlines, registration requirements, and applicability vary by jurisdiction and time. When those details affect implementation, verify them against authoritative current sources and record the jurisdiction and effective date. Have qualified legal counsel review material legal conclusions before launch.
+
+
+## Legal document and retention readiness
+Where the product requires legal surfaces, prepare review-ready Terms, Privacy Policy and applicable community/content, refund/donation, verification/KYC, account-deletion and data-retention materials. Do not invent guarantees or imply that contract language overrides mandatory law. Mark unresolved jurisdiction-specific clauses **LEGAL REVIEW REQUIRED**.
+
+Privacy engineering should support applicable access, correction, deletion, retention, security/breach response, consent/preferences, and processor/subprocessor controls. Follow `workflows/account-deletion-data-retention.md` for products with user-created accounts.
