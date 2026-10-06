@@ -166,6 +166,9 @@ A feature is complete only when applicable items pass:
 
 All other workflows and capability registries in this repository remain applicable, including UX/UI, accessibility, skeleton loaders, semantic colors, clutter audits, testing, security, reliability, regulatory/compliance, AI, integrations, payments, and deployment.
 
+## Security release gate
+For security-sensitive or high-impact products, use `workflows/security.md` as a mandatory release gate. Assume the client is hostile; enforce identity, authorization, verification and financial state server-side; test direct API abuse, IDOR/BOLA, client-state tampering, replay and concurrency; audit secrets/RLS/storage/providers/supply chain; fail closed on ambiguous security-critical state; and never claim “100% secure.” Unresolved CRITICAL findings block production, and applicable HIGH findings in authentication, authorization, financial integrity, KYC/PII, admin or payments require reviewed mitigation/risk acceptance before release.
+
 ## Interactive runtime verification
 A successful build is not proof that the application works for a real user. For substantial applications, discover the available QA environment, start the actual stack, install/launch where applicable, interact with reachable controls and product-specific journeys, monitor runtime logs, test failure paths, and record objective evidence.
 
