@@ -37,11 +37,20 @@ jobs:
           test -f workflows/security.md
           test -f templates/SECURITY.md
           test -f templates/DEVICE_INTERACTIVE_QA.md
+          test -f workflows/abuse-cost-controls.md
+          test -f workflows/account-deletion-data-retention.md
+          test -f workflows/app-store-release.md
+          test -f workflows/cloudflare-origin-security.md
+          test -f templates/SECURITY_CONTROL_MATRIX.md
+          test -f templates/APP_STORE_RELEASE_CHECKLIST.md
           grep -q 'Interactive runtime verification' SKILL.md
           grep -q 'No silent dead controls' SKILL.md
           grep -q 'Security release gate' SKILL.md
           grep -q 'never trust the client' workflows/security.md
           grep -q 'SECURITY GATES PASSED FOR CURRENT TESTED SCOPE' workflows/security.md
+          grep -q 'AUDIT → THREAT MODEL → ATTACK TEST' SKILL.md
+          grep -q 'AUDIT → BACKUP → PLAN → VERIFY RECOVERY' workflows/deployment.md
+          grep -q 'Direct internet → origin HTTPS' workflows/cloudflare-origin-security.md
 
       - name: Reject common secret/artifact files
         shell: bash
