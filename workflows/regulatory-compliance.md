@@ -85,3 +85,7 @@ Where AI is used, assess:
 - applicable AI-specific regulation/policy.
 
 Never claim legal or regulatory compliance solely from code checks.
+
+
+## Store/distribution release review
+For applications distributed through Apple/Google or another controlled platform, use `workflows/app-store-release.md` and `templates/APP_STORE_RELEASE_CHECKLIST.md`. Re-check current official platform rules at release time. Do not assume all payments require store billing; classify the actual transaction and verify the applicable rule. Screenshots/metadata must represent implemented functionality, review access must be safe, and permission purpose strings must be contextual and limited to permissions actually needed.
