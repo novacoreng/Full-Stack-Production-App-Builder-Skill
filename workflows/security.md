@@ -197,3 +197,15 @@ For substantial/high-risk products maintain a `SECURITY_AUDIT_REPORT.md` contain
 - overall recommendation: **BLOCKED** or **SECURITY GATES PASSED FOR CURRENT TESTED SCOPE**.
 
 Maintain a scorecard for applicable domains using **PASS / FAIL / BLOCKED / NOT TESTED**. At minimum cover authentication, authorization, API, financial integrity where applicable, database/RLS, admin, identity/KYC, files/media, messaging/privacy, mobile secret exposure, web security, infrastructure/dependencies, privacy, concurrency, and replay/idempotency.
+
+
+## Cost abuse, dead surfaces, suspicious activity and recovery
+Treat third-party cost exhaustion as a security threat. Follow `workflows/abuse-cost-controls.md` for endpoint-specific quotas, cooldowns, risk signals, bot controls, budgets and alerting.
+
+Before production, identify unused/test/debug routes, development backdoors, sample accounts, fake payment handlers and unused privileged APIs; remove or safely disable them. Production debug behavior must be off.
+
+Add privacy-preserving detection/telemetry where justified for OTP/login storms, many-account abuse, withdrawal anomalies, repeated verification failures, provider-cost abuse, rapid content creation/upload abuse, admin anomalies and payment replay. Avoid automatic punishment based on a single weak signal.
+
+Backup/recovery is not verified merely because backups exist. For critical data and financial systems, safely test restoration/reconciliation where practical and record RPO/RTO targets when the architecture supports them.
+
+Security controls must also be operationally efficient: avoid N+1 authorization queries, unbounded logs, expensive per-request scans and unnecessary provider calls.
