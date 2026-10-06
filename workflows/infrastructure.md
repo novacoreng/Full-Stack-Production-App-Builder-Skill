@@ -124,3 +124,7 @@ A failed mandatory check blocks the environment from being declared ready.
 
 ## Provider-aware QA
 For each external provider classify the test state as CONFIGURED, PARTIALLY CONFIGURED, SANDBOX READY, PROVIDER BLOCKED, or LIVE READY. Execute real sandbox/live calls only when credentials/environment authorize them. If credentials are unavailable, test to the provider boundary and keep the remainder PROVIDER BLOCKED; never substitute a mock result for provider verification.
+
+
+## Edge/origin security
+When Cloudflare is part of the discovered production architecture, use `workflows/cloudflare-origin-security.md`. Determine whether there is a conventional reachable origin before applying firewall/origin-certificate controls. Back up firewall state and verify recovery before changes; use current official Cloudflare IP ranges at implementation time; verify direct-origin bypass resistance rather than assuming proxying hides the origin. Edge controls are additive and never replace application authentication, authorization, rate limits, validation, RLS or provider webhook verification.
