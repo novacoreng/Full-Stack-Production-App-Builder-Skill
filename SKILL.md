@@ -173,3 +173,11 @@ For security-sensitive or high-impact products, use `workflows/security.md` as a
 A successful build is not proof that the application works for a real user. For substantial applications, discover the available QA environment, start the actual stack, install/launch where applicable, interact with reachable controls and product-specific journeys, monitor runtime logs, test failure paths, and record objective evidence.
 
 Use `workflows/device-interactive-qa.md` and `templates/DEVICE_INTERACTIVE_QA.md`. Distinguish IMPLEMENTED, AUTOMATED TESTED, EMULATOR/SIMULATOR TESTED, PHYSICAL DEVICE TESTED, and LIVE PROVIDER VERIFIED. Unknown remains UNKNOWN; blocked remains BLOCKED; not tested remains NOT TESTED. No silent dead controls.
+
+
+## Production security, privacy, store and edge hardening
+For production/security audits use an evidence-first sequence: **AUDIT → THREAT MODEL → ATTACK TEST → IDENTIFY → PLAN → FIX → TEST → RETEST → DOCUMENT → RELEASE GATE**. Establish the canonical deployed architecture before changing security-sensitive backend or infrastructure. Documentation describes implemented controls, not assumptions.
+
+Apply `workflows/abuse-cost-controls.md`, `workflows/account-deletion-data-retention.md`, `workflows/app-store-release.md`, and `workflows/cloudflare-origin-security.md` when relevant. Use `templates/SECURITY_CONTROL_MATRIX.md` and `templates/APP_STORE_RELEASE_CHECKLIST.md` for evidence. Legal/platform requirements must be checked against current authoritative requirements for the relevant jurisdiction/platform; uncertain interpretations remain LEGAL REVIEW REQUIRED or BLOCKED/NOT TESTED rather than being invented.
+
+For infrastructure-sensitive changes follow **AUDIT → BACKUP → PLAN → VERIFY RECOVERY → APPLY → TEST → VERIFY → DOCUMENT**. Do not modify DNS, firewalls, certificates, production databases, credentials, payment/auth architecture or provider callbacks without a recovery/rollback path and verification evidence.
