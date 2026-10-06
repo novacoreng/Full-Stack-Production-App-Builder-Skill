@@ -181,3 +181,35 @@ For production/security audits use an evidence-first sequence: **AUDIT → THREA
 Apply `workflows/abuse-cost-controls.md`, `workflows/account-deletion-data-retention.md`, `workflows/app-store-release.md`, and `workflows/cloudflare-origin-security.md` when relevant. Use `templates/SECURITY_CONTROL_MATRIX.md` and `templates/APP_STORE_RELEASE_CHECKLIST.md` for evidence. Legal/platform requirements must be checked against current authoritative requirements for the relevant jurisdiction/platform; uncertain interpretations remain LEGAL REVIEW REQUIRED or BLOCKED/NOT TESTED rather than being invented.
 
 For infrastructure-sensitive changes follow **AUDIT → BACKUP → PLAN → VERIFY RECOVERY → APPLY → TEST → VERIFY → DOCUMENT**. Do not modify DNS, firewalls, certificates, production databases, credentials, payment/auth architecture or provider callbacks without a recovery/rollback path and verification evidence.
+
+
+## Strict workflow applicability gate
+The workflow library is **mandatory-by-applicability**, not optional guidance. At discovery and again before every phase lock/release, evaluate every workflow in `workflows/` against the accepted PRD/TRD, architecture, platforms, data, providers, risk, distribution targets, and current phase.
+
+For each workflow record exactly one status:
+- **REQUIRED** — applies and must be executed before the dependent phase/release can lock;
+- **EXECUTED** — required work was performed and evidence recorded;
+- **BLOCKED** — applies but cannot be completed because of an external/resource/access blocker;
+- **NOT APPLICABLE** — does not apply, with a concrete reason.
+
+There is no silent **SKIPPED** state. A workflow may not be ignored because it is inconvenient, unfamiliar, time-consuming, or because another workflow partially overlaps it. Overlapping workflows are composed; they do not cancel one another.
+
+### Mandatory workflow families
+Always evaluate the complete workflow set, including discovery/requirements/project identity, PRD/process flows/TRD, capability analysis/toolkit, phased GitHub/infrastructure, UX/UI/frontend/adaptive/mobile/web/foldables, API/backend/database/auth/payments, notifications/integrations where required, UI quality/accessibility, testing/device interactive QA/debugging/build-quality, security/supply-chain/abuse-cost controls, performance/reliability, legal/regulatory/account deletion/store compliance, deployment/infrastructure/Cloudflare where applicable, test personas/admin where applicable, tool orchestration, and GitHub/handoff/state documentation.
+
+Platform/provider-specific workflows such as foldables, payments, app-store release, Cloudflare origin security, test-admin, or account deletion are not forced onto irrelevant products; they must instead be explicitly marked NOT APPLICABLE with the reason. If they apply, they become mandatory.
+
+### Phase lock enforcement
+Before locking a phase:
+1. enumerate workflows relevant to that phase;
+2. execute every REQUIRED workflow;
+3. attach verification/evidence;
+4. mark external blockers BLOCKED with exact remediation;
+5. record NOT APPLICABLE decisions with reasons;
+6. run the workflow coverage check;
+7. refuse to mark the phase complete if any applicable workflow remains unevaluated or required-but-unexecuted.
+
+Before production release, repeat the applicability audit across the **entire** workflow directory. Production readiness cannot be claimed while an applicable workflow is missing evidence, an unexplained workflow is unevaluated, or a release-blocking workflow remains BLOCKED/FAIL.
+
+### Strict evidence rule
+A workflow is not “used” because its file exists, is referenced in documentation, or code appears compatible with it. **Used means evaluated, executed where applicable, tested, and evidenced.** Never fabricate execution status. If tooling/access cannot perform a required workflow, mark BLOCKED rather than weakening the gate.
