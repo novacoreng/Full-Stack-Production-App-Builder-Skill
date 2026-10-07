@@ -1,5 +1,18 @@
 # Phased Build, GitHub Checkpoints, and Infrastructure Orchestration
 
+## Pre-production gate sequence
+
+Production implementation MUST NOT begin until the following artifacts have been created/audited, accepted, and locked in order:
+
+**PRD → TRD → App Flow → Design Brief → Background Schema → Documentation Plan → Production**
+
+Each gate must trace to the accepted requirements. Existing artifacts may be reused only after current-state audit and explicit lock. Material changes trigger downstream impact analysis and re-locking before production continues.
+
+The Background Schema defines the backend/data model before production migrations: entities/tables, typed fields, relationships, constraints/indexes, ownership/tenancy, RLS/authorization, lifecycle states, audit fields, migration approach, retention and sensitive-data classification.
+
+The Documentation Plan identifies living project documentation, update triggers, evidence, and ownership so documentation is maintained during the build rather than written only at the end.
+
+
 ## Mandatory phased delivery
 
 Every project is built in explicit, numbered phases derived from the accepted PRD, TRD, process-flow matrix, capability matrix, and architecture decisions.
