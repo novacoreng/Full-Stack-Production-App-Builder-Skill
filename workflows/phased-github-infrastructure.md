@@ -13,6 +13,18 @@ The Background Schema defines the backend/data model before production migration
 The Documentation Plan identifies living project documentation, update triggers, evidence, and ownership so documentation is maintained during the build rather than written only at the end.
 
 
+## Pre-production gate sequence
+
+Production implementation begins only after these artifacts are created or audited, accepted, and locked in order:
+
+**PRD → TRD → App Flow → Design Brief → Background Schema → Documentation Plan → Production**
+
+Each gate traces to accepted requirements. Existing artifacts may be reused only after a current-state audit. Material changes trigger downstream impact analysis and re-locking before production continues.
+
+The Background Schema defines the backend/data model before production migrations: entities/tables, typed fields, relationships, constraints/indexes, ownership/tenancy, authorization/RLS, lifecycle states, audit fields, migration approach, retention and sensitive-data classification.
+
+The Documentation Plan identifies living project documentation, update triggers, evidence and ownership so documentation is maintained during the build rather than written only at the end.
+
 ## Mandatory phased delivery
 
 Every project is built in explicit, numbered phases derived from the accepted PRD, TRD, process-flow matrix, capability matrix, and architecture decisions.
