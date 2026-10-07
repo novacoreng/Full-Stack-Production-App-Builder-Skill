@@ -39,6 +39,21 @@ Do not skip, merge away, or silently reorder these gates. If an artifact already
 
 A material change after a gate is locked requires change-impact analysis across all downstream artifacts. Update and re-lock every affected downstream gate before continuing production work.
 
+## Mandatory pre-production build flow
+Before production implementation begins, every project must pass these planning gates in this order:
+
+**PRD → TRD → App Flow → Design Brief → Background Schema → Documentation Plan → Production**
+
+1. **PRD**: lock product purpose, users, scope, requirements, rules, acceptance criteria, non-goals and success conditions.
+2. **TRD**: translate the PRD into architecture, technology decisions, frontend/backend responsibilities, APIs, integrations, infrastructure, security, environments, testing and deployment requirements.
+3. **App Flow**: map complete user and system journeys including success, failure, recovery, auth, permissions and provider/backend interactions.
+4. **Design Brief**: lock visual direction, information hierarchy, responsive/adaptive behavior, accessibility, interactions, components/states, branding constraints and approved references.
+5. **Background Schema**: define the underlying backend/data model before production migrations: entities/tables, typed fields, relationships, constraints, indexes, ownership/tenancy, authorization/RLS, lifecycle states, audit fields, migration approach, retention and sensitive-data classification.
+6. **Documentation Plan**: define the living documents, update triggers, evidence and ownership required throughout the build, including state, handoff, changelog, API, database, infrastructure, security, testing, deployment and applicable compliance/runbooks.
+7. **Production**: production implementation starts only after gates 1–6 are accepted and locked. It then follows the numbered phase loop, workflow coverage matrix, GitHub checkpoints, testing, security and release gates.
+
+Do not silently skip or reorder these gates. Existing artifacts may be reused only after auditing them against current accepted requirements. A material change after a gate is locked requires downstream change-impact analysis and re-locking of every affected artifact before production continues.
+
 ## Phase-based delivery
 Every project MUST be divided into explicit numbered phases derived from the accepted PRD, TRD, process-flow matrix, capability matrix, and architecture decisions.
 
