@@ -22,6 +22,23 @@ Build the product as one connected system from idea to verified production relea
 12. Never claim production readiness or external configuration without evidence.
 13. Maintain PROJECT_STATE.md, AGENT_HANDOFF.md, CHANGELOG.md, and relevant phase records continuously.
 
+## Mandatory pre-production build flow
+Before production implementation begins, every project must pass these planning gates in this order:
+
+**PRD → TRD → App Flow → Design Brief → Background Schema → Documentation Plan → Production**
+
+Do not skip, merge away, or silently reorder these gates. If an artifact already exists, audit it against the current accepted requirements and explicitly re-accept/lock it before moving forward.
+
+1. **PRD** — lock product purpose, users, scope, requirements, product rules, acceptance criteria, non-goals and success conditions.
+2. **TRD** — translate the accepted PRD into architecture, technology decisions, frontend/backend responsibilities, APIs, integrations, infrastructure, security, environments, testing and deployment requirements.
+3. **App Flow** — map complete user journeys and system flows from entry through success, failure, recovery, continued use and return; include auth, permissions, backend/provider interactions and exceptional states.
+4. **Design Brief** — define approved visual/product direction, information hierarchy, responsive/adaptive behavior, accessibility, interaction patterns, component/state requirements, branding constraints and design references without changing locked product rules.
+5. **Background Schema** — define the underlying data/backend model required to support the PRD/TRD/app flows: entities/tables, fields/types, relationships, constraints, indexes, ownership/tenancy, RLS/authorization, lifecycle/statuses, audit fields, migrations, retention and sensitive-data classification. This is a design artifact before production migrations are applied.
+6. **Documentation Plan** — define which living documents must be created/maintained during production, their owners/update triggers and evidence requirements. At minimum consider PROJECT_STATE, AGENT_HANDOFF, CHANGELOG, API/database/infrastructure/security/testing/deployment docs and product-specific compliance/runbooks.
+7. **Production** — only after gates 1–6 are locked may production implementation begin. Production then follows the numbered phase loop, applicable workflow matrix, GitHub checkpoints, testing, security and release gates.
+
+A material change after a gate is locked requires change-impact analysis across all downstream artifacts. Update and re-lock every affected downstream gate before continuing production work.
+
 ## Phase-based delivery
 Every project MUST be divided into explicit numbered phases derived from the accepted PRD, TRD, process-flow matrix, capability matrix, and architecture decisions.
 
