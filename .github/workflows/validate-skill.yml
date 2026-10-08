@@ -40,6 +40,7 @@ jobs:
           test -f workflows/abuse-cost-controls.md
           test -f workflows/account-deletion-data-retention.md
           test -f workflows/app-store-release.md
+          test -f workflows/consumer-trust-privacy.md
           test -f workflows/cloudflare-origin-security.md
           test -f templates/SECURITY_CONTROL_MATRIX.md
           test -f templates/APP_STORE_RELEASE_CHECKLIST.md
@@ -54,6 +55,7 @@ jobs:
           grep -q 'AUDIT → BACKUP → PLAN → VERIFY RECOVERY' workflows/deployment.md
           grep -q 'Direct internet → origin HTTPS' workflows/cloudflare-origin-security.md
           grep -q 'Strict workflow applicability gate' SKILL.md
+          grep -q 'Mandatory consumer trust and anti-deception gate' SKILL.md
           grep -q 'There is no silent \*\*SKIPPED\*\* state' SKILL.md
           grep -q 'Every file under' templates/WORKFLOW-COVERAGE-MATRIX.md
           grep -q 'PRD → TRD → App Flow → Design Brief → Background Schema → Documentation Plan → Production' SKILL.md
