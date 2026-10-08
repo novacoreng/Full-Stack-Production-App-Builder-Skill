@@ -179,3 +179,6 @@ This workflow does not provide legal advice. Penalty figures, statutory threshol
 Where the product requires legal surfaces, prepare review-ready Terms, Privacy Policy and applicable community/content, refund/donation, verification/KYC, account-deletion and data-retention materials. Do not invent guarantees or imply that contract language overrides mandatory law. Mark unresolved jurisdiction-specific clauses **LEGAL REVIEW REQUIRED**.
 
 Privacy engineering should support applicable access, correction, deletion, retention, security/breach response, consent/preferences, and processor/subprocessor controls. Follow `workflows/account-deletion-data-retention.md` for products with user-created accounts.
+
+## Consumer trust gate
+Use `workflows/consumer-trust-privacy.md` for unsubscribe, analytics leakage, unsolicited marketing, biometric processing, privacy notices, minors' data, fake reviews/social proof, cancellation friction and misleading AI claims. Verify implementation and disclosures, not just documentation. Applicable failures block release.
