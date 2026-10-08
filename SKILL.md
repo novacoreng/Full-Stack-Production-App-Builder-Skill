@@ -245,3 +245,6 @@ Before production release, repeat the applicability audit across the **entire** 
 
 ### Strict evidence rule
 A workflow is not “used” because its file exists, is referenced in documentation, or code appears compatible with it. **Used means evaluated, executed where applicable, tested, and evidenced.** Never fabricate execution status. If tooling/access cannot perform a required workflow, mark BLOCKED rather than weakening the gate.
+
+## Mandatory consumer trust and anti-deception gate
+Apply `workflows/consumer-trust-privacy.md` during PRD, TRD, app flow, design brief, background schema, documentation planning, implementation, testing and release. Prohibit deceptive reviews/likes/AI claims, spam, hidden analytics leakage, unjustified biometric collection, missing required privacy notices, unlawful children's-data processing and obstructive subscription cancellation. Require appropriate marketing unsubscribe/opt-out, truthful disclosures, data minimization, lawful consent/basis, end-to-end tests and documented evidence. Block release for applicable unresolved violations; mark jurisdictional interpretation LEGAL REVIEW REQUIRED. Never claim lawsuit-proof status.
