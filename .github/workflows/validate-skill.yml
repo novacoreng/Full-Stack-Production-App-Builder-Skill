@@ -56,6 +56,9 @@ jobs:
           grep -q 'Direct internet → origin HTTPS' workflows/cloudflare-origin-security.md
           grep -q 'Strict workflow applicability gate' SKILL.md
           grep -q 'Mandatory consumer trust and anti-deception gate' SKILL.md
+          grep -q 'Mandatory legal, privacy, accessibility and transparency checklist' SKILL.md
+          grep -q 'Fonts and images licensing' workflows/consumer-trust-privacy.md
+          grep -q 'Data deletion request' workflows/consumer-trust-privacy.md
           grep -q 'There is no silent \*\*SKIPPED\*\* state' SKILL.md
           grep -q 'Every file under' templates/WORKFLOW-COVERAGE-MATRIX.md
           grep -q 'PRD → TRD → App Flow → Design Brief → Background Schema → Documentation Plan → Production' SKILL.md
