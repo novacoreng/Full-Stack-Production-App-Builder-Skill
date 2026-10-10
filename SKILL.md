@@ -251,3 +251,6 @@ Apply `workflows/consumer-trust-privacy.md` during PRD, TRD, app flow, design br
 
 ## Mandatory legal, privacy, accessibility and transparency checklist
 At planning, build, QA and release, apply all 20 controls in `workflows/consumer-trust-privacy.md`: accurate privacy policy and terms, truthful reviews/claims, refund policy, accessible alt text, contrast and keyboard navigation, cookie/tracking disclosures and consent where required, valid form consents, verified business details, data minimization, children's privacy, third-party SDK audits, working marketing unsubscribe, no dark patterns, asset/font/image licensing, transparent fees and actionable data-deletion requests. Verify behavior end-to-end, not just documentation. Applicable material failures block release; jurisdiction-specific questions require legal review.
+
+## Security audit methodology
+Evaluate `workflows/security-audit-methodology.md` in the mandatory workflow coverage matrix. Apply its focused guidance mode to ordinary security work and its full audit mode to explicit comprehensive security audits. Require trust-boundary evidence, safe sandboxed validation, coverage tracking and honest CONFIRMED versus NEEDS VALIDATION reporting. Never run untrusted target code without adequate isolation or claim an audit passed merely because checks were described.
