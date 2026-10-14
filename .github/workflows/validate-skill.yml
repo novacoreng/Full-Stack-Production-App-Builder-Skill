@@ -46,6 +46,7 @@ jobs:
           test -f templates/APP_STORE_RELEASE_CHECKLIST.md
           test -f templates/WORKFLOW-COVERAGE-MATRIX.md
           test -f templates/PRE-PRODUCTION-GATES.md
+          test -f workflows/blueprint-branding-zip-handoff.md
           grep -q 'Interactive runtime verification' SKILL.md
           grep -q 'No silent dead controls' SKILL.md
           grep -q 'Security release gate' SKILL.md
@@ -63,6 +64,8 @@ jobs:
           grep -q 'Every file under' templates/WORKFLOW-COVERAGE-MATRIX.md
           grep -q 'PRD → TRD → App Flow → Design Brief → Background Schema → Documentation Plan → Production' SKILL.md
           grep -q 'Production entry remains BLOCKED' templates/PRE-PRODUCTION-GATES.md
+          grep -q 'Blueprint documentation, pre-build logo concept and ZIP delivery' SKILL.md
+          grep -q 'Build ZIP delivery' workflows/blueprint-branding-zip-handoff.md
 
       - name: Reject common secret/artifact files
         shell: bash
