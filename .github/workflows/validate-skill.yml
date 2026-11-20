@@ -66,6 +66,9 @@ jobs:
           grep -q 'Production entry remains BLOCKED' templates/PRE-PRODUCTION-GATES.md
           grep -q 'Blueprint documentation, pre-build logo concept and ZIP delivery' SKILL.md
           grep -q 'Build ZIP delivery' workflows/blueprint-branding-zip-handoff.md
+          test -f workflows/secure-email-verification-cross-device.md
+          grep -q 'Mandatory secure email signup and cross-device verification' SKILL.md
+          grep -q 'Verification matrix' workflows/secure-email-verification-cross-device.md
           grep -q 'Mandatory phase completion checklist after every build' SKILL.md
           grep -q 'Complete phase roadmap (mandatory after every phase)' examples/phase-report.md
 
