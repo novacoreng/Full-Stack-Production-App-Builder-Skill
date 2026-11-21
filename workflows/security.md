@@ -209,3 +209,6 @@ Add privacy-preserving detection/telemetry where justified for OTP/login storms,
 Backup/recovery is not verified merely because backups exist. For critical data and financial systems, safely test restoration/reconciliation where practical and record RPO/RTO targets when the architecture supports them.
 
 Security controls must also be operationally efficient: avoid N+1 authorization queries, unbounded logs, expensive per-request scans and unnecessary provider calls.
+
+## Every-build adversarial regression gate
+Use `workflows/post-build-security-compliance-regression.md` after every build to assess the user-supplied advanced protocol/cryptography/injection attack list and business-logic abuse list. Prioritize authorization, privilege escalation, secrets, payments, AI abuse, paywall bypass, signup policy and database isolation. Run only authorized, bounded tests; distinguish evidence-backed findings from untested hypotheses. Applicable critical failures block acceptance.
