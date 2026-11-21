@@ -121,3 +121,6 @@ Preserve the non-production test-persona/test-admin workflows. Development/stagi
 
 ## Production gate
 Interactive runtime/device/browser/API verification is required wherever the environment and tooling make it possible. Unavailable targets must be explicitly recorded, not simulated or implied.
+
+## Expo cloud simulator option
+For Expo/React Native applications where a local iOS or Android simulator is unavailable, follow `workflows/expo-eas-simulator-testing.md`. Read the official Expo Skills `eas-simulator` instructions, check account availability, install the real build and exercise it interactively, record screenshots/logs, then stop the paid session. Do not mark device QA passed merely because the skill is installed.
