@@ -87,3 +87,6 @@ For payment and financial apps, test duplicate webhook delivery, retries, refund
 For each build: build ID/commit; environment; changes; applicable tests; PASS/FAIL/BLOCKED/NOT TESTED/NOT APPLICABLE; evidence or links; confirmed findings with severity; fixes and retests; remaining risk; phase checklist; ZIP status. Do not assert that an audit, penetration test, simulator test or compliance review occurred unless actually performed.
 
 Use together with `workflows/security.md`, `workflows/security-audit-methodology.md`, `workflows/device-interactive-qa.md`, `workflows/consumer-trust-privacy.md`, `templates/SECURITY_CONTROL_MATRIX.md` and `examples/phase-report.md`.
+
+## Video 20-point security checklist
+In addition to the screenshot-derived controls above, run the applicability and evidence review in `workflows/video-20-point-predeploy-security.md` after each build, with full applicable verification before deployment. The video groups its 20 checks into injection/input, auth/access, secrets/tokens and config/hygiene. Do not claim 100% security or treat the video as a controlled comparison of coding models.
