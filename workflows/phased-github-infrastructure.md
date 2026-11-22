@@ -199,3 +199,5 @@ At completion, the final document must include a phase-by-phase GitHub history s
 - remaining limitations, if any.
 
 The final release must be traceable from requirements → phase → code → infrastructure → tests → verification → GitHub commit → deployment.
+## Mandatory phase and user-test gate
+Apply `workflows/mandatory-phases-user-full-test.md` at every phase. Commit only accurately described changes, provide a verified preview or explicit blocker, run applicable security/privacy/accessibility regression and offer user-driven full testing before final acceptance. Track issues to verified retest and repeat the entire phase checklist with actual completed ticks. Production release requires all applicable acceptance and security gates.
